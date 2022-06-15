@@ -12,11 +12,11 @@ data class JSON(
         val default_dashboard_range: String? = "Last 7 Days",
         val display_name: String? = "Anonymous User",
         val durations_slice_by: String? = "Language",
-        val email: String? = "software.sternbach@gmail.com",
+        val email: String? = "software@gmail.com",
         val full_name: String? = null,
         val has_premium_features: Boolean? = false,
         val human_readable_website: String? = null,
-        val id: String? = "1dc3ae8a-a0b0-40d3-9cc8-d00842150ee5",
+        val id: String? = "uuid",
         val is_email_confirmed: Boolean? = true,
         val is_email_public: Boolean? = false,
         val is_hireable: Boolean? = false,
@@ -25,16 +25,16 @@ data class JSON(
         val last_heartbeat_at: String? = "2022-01-09T01:09:17Z",
         val last_plugin: String? = "wakatime/v1.32.1 (darwin-21.1.0-arm64) go1.17.5 AndroidStudio/Arctic Fox | 2020.3.1 Patch 4",
         val last_plugin_name: String? = "Android Studio",
-        val last_project: String? = "CustomMishnahLearningProgram",
+        val last_project: String? = "Project1",
         val location: String? = null,
         val logged_time_public: Boolean? = false,
         val modified_at: String? = null,
         val needs_payment_method: Boolean? = false,
-        val photo: String? = "https://wakatime.com/photo/1dc3ae8a-a0b0-40d3-9cc8-d00842150ee5",
+        val photo: String? = "https://wakatime.com/photo/aaa",
         val photo_public: Boolean? = true,
         val plan: String? = "basic",
-        val profile_url: String? = "https://wakatime.com/@1dc3ae8a-a0b0-40d3-9cc8-d00842150ee5",
-        val profile_url_escaped: String? = "https://wakatime.com/@1dc3ae8a-a0b0-40d3-9cc8-d00842150ee5",
+        val profile_url: String? = "https://wakatime.com/@id",
+        val profile_url_escaped: String? = "https://wakatime.com/@id",
         val public_email: String? = null,
         val public_profile_time_range: String? = "last_7_days",
         val share_all_time_badge: String? = null,
@@ -77,23 +77,6 @@ data class JSON(
         val name: String?,
         val operating_systems: List<Category>,
     )
-    /*branches
-categories
-dependencies
-editors
-entities
-grand_total
-languages
-machines
-name
-operating_systems*/
-
-    /*decimal
-digital
-hours
-minutes
-text
-total_seconds*/
     data class Category(
         val decimal: String? = "2.55",
         val digital: String? = "2:33:04",
@@ -123,7 +106,7 @@ total_seconds*/
         val digital: String? = "2:33:04",
         val hours: Int? = 2,
         val minutes: Int? = 33,
-        val machine_name_id: String? = "330bcca0-ca22-4b7f-9519-0fe003424dba",
+        val machine_name_id: String? = "UUID",
         val name: String? = "Coding",
         val percent: Double? = 100.0,
         val seconds: Int? = 4,

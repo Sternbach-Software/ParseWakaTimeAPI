@@ -4,32 +4,45 @@ import java.net.URL
 import java.time.LocalDate
 import kotlin.math.roundToInt
 
-fun main(args: Array<String>) {
+fun main() {
     val startDate = "2021-09-10"
     val endDate = LocalDate.now().toString()
     val json = Gson().fromJson(
         getJSON(
             false,
-            File("/Users/shmuel/IdeaProjects/ParseWakaTime/src/wakatime-software.sternbachgmail.com-1dc3ae8aa0b040d39cc8d00842150ee5.json"),
+            File("wakatime-software.sternbachgmail.com-1dc3ae8aa0b040d39cc8d00842150ee5.json"),
             startDate,
             endDate
         ),
         JSON::class.java
     )
-    println(
-        json
-            .days
+    val daysAfterLastPayment = json.days.filter {
+        val month = it.date.substring(5, 7)
+        val day = it.date.substring(8, 10)
+        it.date.substring(0, 4) == "2022" && (month > "03" || (month == "03" && day > "15"))
+    }
+    //println("Projects: ${daysAfterLastPayment.flatMapTo(HashSet()) { it.projects.map { it.name } }}")
+    print(
+        daysAfterLastPayment
             .flatMap { it.projects }
-            .filter { it.name == "TorahDownloads" }
+            .filter {
+                it.name == "TorahDownloads" ||
+                        it.name == "uamp_for_td" ||
+                        it.name == "AutoTaggrSuite-Original" ||
+                        it.name == "AutoTaggerSuite" ||
+                        it.name == "okdownload-root" ||
+                        it.name == "uamp" ||
+                        it.name == "KotlinFunctionLibrary" ||
+                        it.name == "public-android"
+            }
             .sumOf { it.grand_total.total_seconds!! }
-            .also { println("Time in double: $it") }
-            .roundToInt()
-            .toHrMinSec()
+            /3600.0
     )
+    println(" hours")
 }
 
 private fun getJSON(getFromWeb: Boolean, file: File?, startDate: String?, endDate: String?) = if (getFromWeb)
-    URL("https://wakatime.com/api/v1/users/current/summaries?start=${startDate}&end=$endDate?access_token=66142ee1-2ce3-4bb6-a8a7-7d685219f78e").readText()
+    URL("https://wakatime.com/api/v1/users/sternbachsoftware/summaries?start=${startDate}&end=$endDate&access_token=66142ee1-2ce3-4bb6-a8a7-7d685219f78e").readText()
 else file!!.readText()
 
 fun Int.toHrMinSec(hour: Int = 0, minute: Int = 0, second: Int = this): Triple<Int, Int, Int> {
